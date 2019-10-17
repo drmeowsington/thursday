@@ -20,13 +20,6 @@
 			  	-o-transition: all .2s ease-in-out;
 			  	transition: all .2s ease-in-out;
 			}
-			.delete {
-				transform: scale(0);
-				-webkit-transform: scale(0);
-				-moz-transform: scale(0);
-				-ms-transform: scale(0);
-				-o-transform: scale(0);
-			}
 			h1 {
 				color: #5a411f;
 				visibility: hidden;
@@ -54,7 +47,7 @@
 		<script type="text/javascript">
 			
 			function vegClicked(event) {
-				event.target.classList.add('delete');
+				event.target.parentNode.removeChild(event.target);
 			}
 
 			function getImagePath(red) {
