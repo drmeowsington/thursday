@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link href="https://fonts.googleapis.com/css?family=Mansalva&display=swap" rel="stylesheet">
+		<title>VEGGIFEST</title>
+		<style type="text/css">
+			html, body {
+				margin: 0;
+				padding: 0;
+				background: #483000;
+			}
+			img {
+				position: fixed;
+				width: 20%;
+
+				-webkit-transition: all .2s ease-in-out;
+			  	-moz-transition: all .2s ease-in-out;
+			  	-o-transition: all .2s ease-in-out;
+			  	transition: all .2s ease-in-out;
+			}
+			.delete {
+				transform: scale(0);
+				-webkit-transform: scale(0);
+				-moz-transform: scale(0);
+				-ms-transform: scale(0);
+				-o-transform: scale(0);
+			}
+			h1 {
+				color: #5a411f;
+				visibility: hidden;
+				position: fixed;
+				height: 100%;
+				width: 100%;
+				left: 0;
+				top: 0;
+				font-size: 100px;
+				font-family: 'Mansalva', cursive;
+				padding: 0;
+				margin: 0;
+				display: flex;
+				text-align: center;
+				justify-content: center;
+				align-content: center;
+				align-items: center;
+			}
+		</style>
+	</head>
+	<body>
+		
+		<h1>Pots 'n Pans</h1>
+
+		<script type="text/javascript">
+			
+			function vegClicked(event) {
+				event.target.classList.add('delete');
+			}
+
+			function getImagePath(red) {
+				var greens = ['cabbage', 'salad', 'broccoli'];
+				var reds = ['carrot', 'radish', 'beet'];
+				var index = Math.floor(Math.random() * 3);
+				return red ? reds[index] + '.svg' : greens[index] + '.svg';
+			}
+
+			function getRandomImage(red) {
+				var img = document.createElement('img');
+				img.src = getImagePath(red);
+				var marginWidth = window.screen.width * 0.2;
+				var marginHeight = window.screen.width * 0.1;
+				img.style.left = (Math.floor(Math.random() * (window.screen.width + marginWidth)) - marginWidth) + 'px';
+				img.style.top = (Math.floor(Math.random() * window.screen.height) - marginHeight) + 'px';
+				img.addEventListener('click', vegClicked);
+				return img;
+			}
+
+			function fillScreenWithGreen(limit) {
+				for (var counter = 0; counter < limit; counter++) {
+					var img = getRandomImage(false);
+					document.body.appendChild(img);
+				}
+			}
+
+			function fillScreenWithRed(limit) {
+				for (var counter = 0; counter < limit; counter++) {
+					var img = getRandomImage(true);
+					document.body.appendChild(img);
+				}
+			}
+
+			function init() {
+				setTimeout(function() {
+					document.getElementsByTagName('h1')[0].style.visibility = 'visible';
+				}, 2000);
+				fillScreenWithRed(1000);
+				fillScreenWithGreen(1000);
+			}
+
+			init();
+
+		</script>
+	</body>
+</html>
