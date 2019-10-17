@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
 		<link href="https://fonts.googleapis.com/css?family=Mansalva&display=swap" rel="stylesheet">
 		<title>VEGGIFEST</title>
 		<style type="text/css">
@@ -58,10 +58,9 @@
 			}
 
 			function getImagePath(red) {
-				var greens = ['cabbage', 'salad', 'broccoli'];
-				var reds = ['carrot', 'radish', 'beet'];
-				var index = Math.floor(Math.random() * 3);
-				return red ? reds[index] + '.svg' : greens[index] + '.svg';
+				var imgs = ['cabbage', 'salad', 'broccoli', 'carrot', 'radish', 'beet', 'onion'];
+				var index = Math.floor(Math.random() * imgs.length);
+				return imgs[index] + '.svg';
 			}
 
 			function getRandomImage(red) {
@@ -75,16 +74,9 @@
 				return img;
 			}
 
-			function fillScreenWithGreen(limit) {
+			function fillScreen(limit) {
 				for (var counter = 0; counter < limit; counter++) {
-					var img = getRandomImage(false);
-					document.body.appendChild(img);
-				}
-			}
-
-			function fillScreenWithRed(limit) {
-				for (var counter = 0; counter < limit; counter++) {
-					var img = getRandomImage(true);
+					var img = getRandomImage(Math.floor(Math.random() * 2));
 					document.body.appendChild(img);
 				}
 			}
@@ -93,8 +85,7 @@
 				setTimeout(function() {
 					document.getElementsByTagName('h1')[0].style.visibility = 'visible';
 				}, 2000);
-				fillScreenWithRed(1000);
-				fillScreenWithGreen(1000);
+				fillScreen(1000);
 			}
 
 			init();
